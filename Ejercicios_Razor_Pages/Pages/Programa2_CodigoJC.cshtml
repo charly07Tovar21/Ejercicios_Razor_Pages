@@ -1,0 +1,28 @@
+﻿@page
+@model Ejercicios_Razor_Pages.Pages.Programa2_CodigoJCModel
+@{
+}
+<h3>Cifrado César</h3>
+<p>
+	Según el historiador Cayo Suetonio, el dictador perpetuus Julio César utilizaba un código
+	de sustitución en el que cada letra del alfabeto latino se reemplazaba por otra letra situada n posiciones
+	más a la derecha en el orden alfabético. Este método también es conocido como un código de rotación,
+	ya que para las últimas letras se vuelve a retomar el conteo por el principio.
+</p>
+<p>Ejemplo: Para n=3, si el mensaje original es "ALEA IACTA EST", el mensaje cifrado sería "DOHD LDFWD HVW".</p>
+
+<form method="post">
+	<p>Texto a cifrar: <input type="text" asp-for="textoCifrar" /></p>
+	<p>Ingrese número de desplazamiento: <input type="number" asp-for="desplazamiento" /></p>
+	<p><input type="submit" name="accion" value="Cifrar" /></p>
+	<p><input type="submit" name="accion" value="Descifrar" /></p>
+	<small class="form-text text-muted">Número de posiciones a desplazar (entre 1 y 25)</small>
+
+</form>
+
+@if (!string.IsNullOrEmpty(Model.resultado))
+{
+	<h3>Resultado: @Model.resultado</h3>
+	<h3>Acción realizada: @Model.accionRealizada</h3>
+
+}

@@ -1,0 +1,70 @@
+﻿@page
+@model Ejercicios_Razor_Pages.Pages.IgualdadModel
+@{
+}
+
+<h3>Igualdad de expresión binomial</h3>
+
+<form method="post">
+	<p>a: <input type="number" asp-for="a" /></p>
+	<p>b: <input type="number" asp-for="b" /></p>
+	<p>x: <input type="number" asp-for="x" /></p>
+	<p>y: <input type="number" asp-for="y" /></p>
+	<p>n: <input type="number" asp-for="n" /></p>
+	<p><input type="submit" value="Calcular" /> </p>
+</form>
+
+
+@if(Model.resultado1 != 0){
+	<div class="mt-4">
+		<h4>Procedimiento:</h4>
+		<div class="math-steps">
+			<p>@Html.Raw(Model.Paso1Direct) = <span>@Html.Raw(Model.Paso2Direct) =</span> <span> @Html.Raw(Model.Paso3Direct) = </span></p>
+			
+			<h2>Resolución directa: @Model.resultado1</h2>
+		</div>
+
+		<div class="math-steps">
+			<div class="math-expression">
+				\[
+				\sum_{k=0}^{@Model.n} \binom{@Model.n}{k} \cdot
+				(@Model.a \cdot @Model.x)^{@Model.n - k} \cdot
+				(@Model.b \cdot @Model.y)^k
+				\]
+			</div>
+
+			@foreach (var termino in Model.Terminos)
+			{
+				@Html.Raw(termino)
+			}
+
+			<h3>Suma en base a la formula de sumatoria: @Model.ResultSumatoria</h3>
+			@if (Model.resultado1 == Model.ResultSumatoria)
+			{
+				<div class="text-success">✅ Los resultados coinciden</div>
+			}
+		</div>
+	</div>
+}
+
+<style>
+	.math-expression {
+		font-size: 1.2em;
+		margin: 20px 0;
+		text-align: center;
+	}
+
+	.math-steps {
+		font-family: 'Cambria Math', serif;
+	}
+
+</style>
+
+<script>
+	MathJax = {
+		tex: {
+			inlineMath: [['$', '$'], ['\\(', '\\)']]
+		}
+	};
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>

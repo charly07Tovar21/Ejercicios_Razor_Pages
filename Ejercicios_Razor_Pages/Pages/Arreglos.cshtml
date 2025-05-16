@@ -1,0 +1,23 @@
+﻿@page
+@model Ejercicios_Razor_Pages.Pages.ArreglosModel
+@{
+}
+
+<form method="post">
+    <p><input type="submit" value="Generar números"/> </p>
+</form>
+
+@if (Model.Numeros != null && Model.Numeros.Length > 0)
+{
+    <h3>Números Generados (20 entre 0 y 100):</h3>
+    <p><strong>Arreglo de numeros aleatorios:  </strong>@string.Join(", ", Model.Numeros)</p>
+
+    <h3>Resultados:</h3>
+    <p><strong>Suma:</strong> @Model.Suma</p>
+    <p><strong>Promedio:</strong> @Model.Promedio.ToString("F2")</p>
+
+    <p><strong>Arreglo de números ordenados:  </strong>@string.Join(", ", Model.NumerosOrdenados)</p>
+
+    <p><strong>Moda:</strong> @string.Join(", ", Model.Moda)</p>
+    <p><strong>Mediana:</strong> @Model.Mediana</p>
+}

@@ -1,0 +1,112 @@
+﻿@page
+@model Ejercicios_Razor_Pages.Pages.Programa1_IMCModel
+@{
+}
+
+<h2>Cálculo de IMC (Índice de masa corporal)</h2>
+
+<div style="text-align: center; margin: 30px 0; font-family: 'Arial', sans-serif;">
+	<div style="
+        background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+        border-radius: 12px;
+        padding: 25px;
+        display: inline-block;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        border: 1px solid #e0e6ed;
+	">
+		<h3 style="
+            color: #2c3e50;
+            margin: 0;
+            font-size: 1.8rem;
+            font-weight: 600;
+		">
+			IMC = <span style="color: #e74c3c">Peso</span> / <span style="color: #3498db">altura<sup style="font-size: 1.2em">2</sup></span>
+		</h3>
+
+		<div style="
+            margin-top: 15px;
+            font-size: 0.9rem;
+            color: #7f8c8d;
+            font-style: italic;
+		">
+			Donde: Peso en kg y altura en metros
+		</div>
+	</div>
+</div>
+
+<form method="post">
+	<p>Peso (kg): <input type="number" asp-for="pes" /></p>
+	<p>Altura (m): <input type="number" asp-for="alt" /></p>
+	<p><input type="submit" value="Calcular IMC"/></p>
+
+</form>
+
+@if (Model.imc != 0)
+{
+	<h3>Tu IMC es: @Model.imc kg/m<sup>2</sup></h3>
+}
+@switch (Model.imc)
+{
+	case < 18:
+		<p>Estás bajo de peso</p>
+		<p>Tu IMC indica que estás por debajo del rango recomendado. Esto podría estar afectando tu salud.</p>
+		<h5>Recomendaciones:</h5>
+		<ul>
+			<li>Consulta con un nutriólogo para un plan alimenticio adecuado</li>
+			<li>Incrementa la ingesta de proteínas y carbohidratos saludables</li>
+			<li>Realiza ejercicios de fuerza para desarrollar masa muscular</li>
+		</ul>
+		break;
+	case 18 or < 25:
+		<p>¡Felicidades estás en un peso normal!</p>
+		<p>Tu IMC se encuentra dentro del rango saludable recomendado.</p>
+		<h5>Consejos para mantener tu peso:</h5>
+		<ul>
+			<li>Continúa con una alimentación balanceada y variada</li>
+			<li>Realiza actividad física regular (150 minutos semanales)</li>
+			<li>Mantén una adecuada hidratación diaria</li>
+		</ul>
+		break;
+	case 25 or < 27:
+		<p>Estas en sobrepeso</p>
+		<p>Tu IMC indica un ligero exceso de peso que podría representar un factor de riesgo moderado.</p>
+		<h5>Recomendaciones:</h5>
+		<ul>
+			<li>Incrementa tu actividad física diaria (caminar, nadar, ciclismo)</li>
+			<li>Reduce el consumo de alimentos procesados y azúcares</li>
+			<li>Aumenta el consumo de frutas, verduras y fibra</li>
+		</ul>
+		break;
+	case 27 or < 30:
+		<p>Cuentas con obesidad de tipo grado I</p>
+		<p>Tu IMC indica obesidad leve. Es importante tomar medidas para reducir los riesgos asociados.</p>
+		<h5>Plan de acción recomendado:</h5>
+		<ul>
+			<li>Consulta con un especialista en nutrición</li>
+			<li>Establece un programa de ejercicio regular supervisado</li>
+			<li>Monitorea otros indicadores de salud (presión arterial, glucosa)</li>
+		</ul>
+		break;
+	case 30 or < 40:
+		<p>Cuentas con obesidad de tipo grado II</p>
+		<p>Tu IMC indica obesidad moderada, lo cual representa un factor de riesgo importante para diversas enfermedades.</p>
+		<h5>Atención médica recomendada:</h5>
+		<ul>
+			<li>Evaluación médica completa para identificar posibles complicaciones</li>
+			<li>Plan de alimentación personalizado con seguimiento profesional</li>
+			<li>Programa de actividad física adaptado a tu condición</li>
+			<li>Considerar apoyo psicológico para cambios de hábitos</li>
+		</ul>
+		break;
+	case >= 40:
+		<p>Cuentas con obesidad de tipo grado III</p>
+		<p>Tu IMC indica obesidad severa (mórbida), lo que representa un riesgo elevado para tu salud.</p>
+		<h5>Atención especializada urgente:</h5>
+		<ul>
+			<li>Busca atención médica especializada lo antes posible</li>
+			<li>Evaluación completa para detectar complicaciones existentes</li>
+			<li>Plan de tratamiento integral médico-nutricional</li>
+			<li>Valoración para posibles intervenciones médicas específicas</li>
+		</ul>
+		break;
+}
